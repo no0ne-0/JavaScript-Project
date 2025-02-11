@@ -1,26 +1,26 @@
 let gameSeq = [];
 let userSeq = [];
 
-let btns = ["yellow", "red", "purple", "green"];
+let btns = ["yellow", "red", "purple", "green"];   //yh un button ko acess krne ke lie,basicallybunki class hai 
 
-let started = false;
+let started = false;        // shuruaat me false mtlb band hai 
 let level = 0;
 
 let h2 = document.querySelector("h2");
 
 document.addEventListener("keypress", function () {
-  if (started == false) {
+  if (started == false) {  //taaki aik hi baar ho ,jab only false ho tab vrna baar baar started true karate rhenge
     console.log("game is started");
     started = true;
 
-    levelUp();
+    levelUp();  //kuki baar baar yh hoga na to function bnanado
   }
 });
 
 function gameFlash(btn) {
-  btn.classList.add("flash");
+  btn.classList.add("flash");  //aik new class add krdi jisse color change ho taki wo flash ho
   setTimeout(function () {
-    btn.classList.remove("flash");
+    btn.classList.remove("flash");  //0.5sec ko us class ko remove kardia
   }, 250);
 }
 
@@ -33,12 +33,12 @@ function userFlash(btn) {
 
 function levelUp() {
   userSeq = [];
-  level++;
+  level++;   
   h2.innerText = `Level ${level}`;
 
   let randIdx = Math.floor(Math.random() * 3);
   let randColor = btns[randIdx];
-  let randBtn = document.querySelector(`.${randColor}`);
+  let randBtn = document.querySelector(`.${randColor}`);  //aik random button un chaaro me se access krlia unki class ki base pe
   gameSeq.push(randColor);
   console.log(gameSeq);
   gameFlash(randBtn);
@@ -63,7 +63,7 @@ function btnPress() {
   let btn = this;
   userFlash(btn);
 
-  userColor = btn.getAttribute("id");
+  userColor = btn.getAttribute("id");    //kewal uska color , konsa press hua usko track kren ke lie 
   userSeq.push(userColor);
 
   checkAns(userSeq.length - 1);
@@ -74,7 +74,7 @@ for (btn of allBtns) {
   btn.addEventListener("click", btnPress);
 }
 
-function reset() {
+function reset() {  //sabko initial value dedi taaki sab reset hojaaye 
   started = false;
   gameSeq = [];
   userSeq = [];
